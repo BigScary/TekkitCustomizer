@@ -35,7 +35,7 @@ public class MaterialCollection
 	//returns a MaterialInfo complete with the friendly material name from the config file
 	MaterialInfo Contains(MaterialInfo material)
 	{
-		for(int i = 0; i < this.materials.size() ; i++)
+		for(int i = 0; i < this.materials.size(); i++)
 		{
 			MaterialInfo thisMaterial = this.materials.get(i);
 			if(material.typeID == thisMaterial.typeID && (thisMaterial.allDataValues || material.data == thisMaterial.data))
@@ -44,7 +44,7 @@ public class MaterialCollection
 			}
 			else if(thisMaterial.typeID > material.typeID)
 			{
-				return null;
+				return null;				
 			}
 		}
 		

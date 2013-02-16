@@ -1,7 +1,7 @@
 name: TekkitCustomizer
 main: me.ryanhamshire.TekkitCustomizer.TekkitCustomizer
 softdepend: [Multiverse-Core, My Worlds, Transporter, MystCraft]
-version: 1.5.2
+version: 1.6
 commands:
    blockinfo:
       description: Provides type ID and damage information for a material in the world or in hand.

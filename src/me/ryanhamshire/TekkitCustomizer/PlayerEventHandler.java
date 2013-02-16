@@ -19,6 +19,7 @@
 package me.ryanhamshire.TekkitCustomizer;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -70,7 +71,7 @@ public class PlayerEventHandler implements Listener {
 		}
 	}
 	
-	//when something is crafted (may not be a player crafting)
+	//when something is clicked in an inventory
 	@EventHandler(priority = EventPriority.LOWEST)
 	void onItemClicked(InventoryClickEvent event)
 	{
@@ -119,6 +120,27 @@ public class PlayerEventHandler implements Listener {
 		{
 			event.setCancelled(true);						
 			player.sendMessage("Sorry, usage of that item has been banned.  Reason: " + bannedInfo.reason);
+		}
+		
+		if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
+		{
+			Block block = event.getClickedBlock();
+			
+			bannedInfo = TekkitCustomizer.instance.isBanned(ActionType.Usage, player, block.getTypeId(), block.getData(), block.getLocation());
+			if(bannedInfo != null)
+			{
+				event.setCancelled(true);						
+				player.sendMessage("Sorry, usage of that item has been banned.  Reason: " + bannedInfo.reason);
+			}
+			else
+			{
+				bannedInfo = TekkitCustomizer.instance.isBanned(ActionType.Ownership, player, block.getTypeId(), block.getData(), block.getLocation());
+				if(bannedInfo != null)
+				{
+					event.setCancelled(true);
+					player.sendMessage("Sorry, usage of that item has been banned.  Reason: " + bannedInfo.reason);
+				}
+			}
 		}
 	}
 	

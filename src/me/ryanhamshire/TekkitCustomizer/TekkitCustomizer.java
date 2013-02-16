@@ -475,7 +475,7 @@ public class TekkitCustomizer extends JavaPlugin
 		if(!this.config_enforcementWorlds.contains(location.getWorld())) return null;
 		
 		if(player.hasPermission("tekkitcustomizer.*")) return null;
-		
+
 		MaterialCollection collectionToSearch;
 		String permissionNode;
 		if(actionType == ActionType.Usage)
